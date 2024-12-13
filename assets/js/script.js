@@ -12,65 +12,164 @@ REGOLE
 /* ESERCIZIO A
   Crea una variabile chiamata "sum" e assegnaci il risultato della somma tra i valori 10 e 20.
 */
+console.log("Esercizio A");
+
+let sum = 10 + 20;
+console.log(sum);
 
 /* ESERCIZIO B
   Crea una variabile chiamata "random" e assegnaci un numero casuale tra 0 e 20 (deve essere generato dinamicamente a ogni esecuzione).
 */
+console.log("Esercizio B");
+
+let random = Math.floor(Math.random() * 21);            //Moltiplico per 21, altrimenti se avessi moltiplicato per 20, quest'ultimo non sarebbe potuto uscire nel range di numeri random.
+console.log(random);
 
 /* ESERCIZIO C
   Crea una variabile chiamata "me" e assegnaci un oggetto contenente le seguenti proprietà: name = il tuo nome, surname = il tuo cognome, age = la tua età.
 */
+console.log("Esercizio C");
+
+let me = {
+    name: "Vincenzo",  
+    surname: "Moussa",   
+    age: 30            
+  };
+  
+console.log(me);
 
 /* ESERCIZIO D
   Crea del codice per rimuovere programmaticamente la proprietà "age" dall'oggetto precedentemente creato.
 */
+console.log("Esercizio D");
+
+delete me.age;
+console.log(me);
 
 /* ESERCIZIO E
   Crea del codice per aggiungere programmaticamente all'oggetto precedentemente creato un array chiamato "skills", contenente i linguaggi di programmazione che conosci.
 */
+console.log("Esercizio E");
+
+me.skills = ["HTML", "CSS"];
+console.log(me);
 
 /* ESERCIZIO F
   Crea un pezzo di codice per aggiungere un nuovo elemento all'array "skills" contenuto nell'oggetto "me".
 */
+console.log("Esercizio F");
+
+me.skills.push("JavaScript");
+console.log(me);
 
 /* ESERCIZIO G
   Crea un pezzo di codice per rimuovere programmaticamente l'ultimo elemento dall'array "skills" contenuto nell'oggetto "me".
 */
+console.log("Esercizio G");
+
+me.skills.pop();
+console.log(me);
 
 // Funzioni
 
 /* ESERCIZIO 1
   Crea una funzione chiamata "dice": deve generare un numero casuale tra 1 e 6.
 */
+console.log("Esercizio 1");
+
+let dice = function () {
+    return Math.floor(Math.random() * 6) + 1;                     //Aggiungiamo il +1 dopo la randomizzazione dei numeri, per far in modo che il risultato rispecchi il lancio del dado, potendoci dare come risultato un numero che va dall'1 al 6. (se non avessimo aggiunto 1, il risultato sarebbe stato compreso tra 0 e 5)
+  }
+  
+console.log(dice());
 
 /* ESERCIZIO 2
   Crea una funzione chiamata "whoIsBigger" che riceve due numeri come parametri e ritorna il maggiore dei due.
 */
+console.log("Esercizio 2");
+
+let whoIsBigger = function(x, y) {
+    if (x > y) {
+        return console.log("Il numero " + x + " è maggiore del numero " + y)
+    } else if (y > x) {
+        return console.log("Il numero " + y + " è maggiore del numero " + x)
+    } else {
+        console.log("Il numero " + x + " è uguale al numero " + y)
+    }
+} 
+
+whoIsBigger(1, 2);
+whoIsBigger(2, 1);
 
 /* ESERCIZIO 3
   Crea una funzione chiamata "splitMe" che riceve una stringa come parametro e ritorna un'array contenente ogni parola della stringa.
 
   Es.: splitMe("I love coding") => ritorna ["I", "Love", "Coding"]
 */
+console.log("Esercizio 3");
+
+let splitMe = function(stringa) {
+    return stringa.split(" ");
+}
+
+console.log(splitMe("Mi piacciono i videogiochi"));
 
 /* ESERCIZIO 4
   Crea una funzione chiamata "deleteOne" che riceve una stringa e un booleano come parametri.
   Se il valore booleano è true la funzione deve ritornare la stringa senza il primo carattere, altrimenti la deve ritornare senza l'ultimo.
 */
+console.log("Esercizio 4");
+
+function deleteOne(stringa, veroOfalso) {
+    if (veroOfalso) {
+      return stringa.slice(1);  
+    } else {
+      return stringa.slice(0, -1);  
+    }
+  }
+
+console.log(deleteOne("Desktop", true));
+console.log(deleteOne("Desktop", false));
 
 /* ESERCIZIO 5
   Crea una funzione chiamata "onlyLetters" che riceve una stringa come parametro e la ritorna eliminando tutte le cifre numeriche.
 
   Es.: onlyLetters("I have 4 dogs") => ritorna "I have dogs"
 */
+console.log("Esercizio 5");
+
+let onlyLetters = function(stringa) {
+    return stringa.replace(/[0-9]/g, "");                           //Con l'espressione regolare all'interno della parentesi, andiamo a prendere tutti i valori numerici dallo 0 al 9, nel campo GLOBALE (g), e le sostituiamo con delle stringhe vuote.
+  }
+  
+console.log(onlyLetters("Non mi piace avere 2telefoni")); 
 
 /* ESERCIZIO 6
   Crea una funzione chiamata "isThisAnEmail" che riceve una stringa come parametro e ritorna true se la stringa è un valido indirizzo email.
 */
+console.log("Esercizio 6");
+
+let isThisAnEmail = function(stringaEmail) {
+    let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;       //Regola regex per determinare quali e quanti caratteri deve contenere l'indirizzo mail per essere valido
+    return regex.test(stringaEmail);                                        //Verifico che la stringa inserita nel parametro della funzione sia valida
+  }
+  
+  console.log(isThisAnEmail("vincenzomoussa@gmail.com"));                   //Questa è valida
+  console.log(isThisAnEmail("vincenzo@moussa@gmail.com"));                  //Questa non lo è
 
 /* ESERCIZIO 7
   Scrivi una funzione chiamata "whatDayIsIt" che ritorna il giorno della settimana corrente.
 */
+console.log("Esercizio 7");
+
+let whatDayIsIt = function() {
+    let giorniDellaSettimana = ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"];     
+    let giornoOdierno = new Date();                                                                                
+    let giornoPreciso = giornoOdierno.getDay();  
+    return giorniDellaSettimana[giornoPreciso];  
+  }
+  
+console.log(whatDayIsIt());  
 
 /* ESERCIZIO 8
   Scrivi una funzione chiamata "rollTheDices" che riceve un numero come parametro.
@@ -84,118 +183,64 @@ REGOLE
       values: [3, 3, 4]
   }
 */
+console.log("Esercizio 8");
+
+let rollTheDices = function(lanciaDadoNVolte) {
+    let sum = 0;
+    let values = [];
+  
+    for (let i = 0; i < lanciaDadoNVolte; i++) {
+      let lanciaIlDado = dice();  
+      values.push(lanciaIlDado);   
+      sum += lanciaIlDado;         
+    }
+    
+    return {"Somma totale dei numeri estratti": sum, "Valore singolo di ogni estrazione": values}; 
+  }
+  
+  console.log(rollTheDices(4));  
 
 /* ESERCIZIO 9
   Scrivi una funzione chiamata "howManyDays" che riceve una data come parametro e ritorna il numero di giorni trascorsi da tale data.
 */
+console.log("Esercizio 9");
+
+let howManyDays = function(dataDaInserire) {
+    let dataOdierna = new Date();  
+    let dataInserita = new Date(dataDaInserire);
+  
+    let differenzaInMillisecondi = dataOdierna - dataInserita;
+  
+    let differenzaInGiorni = Math.floor(differenzaInMillisecondi / (1000 * 60 * 60 * 24));
+  
+    return differenzaInGiorni;  
+  }
+  
+console.log(howManyDays("2024-12-01")); 
+console.log(howManyDays("2024-12-12")); 
 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
 */
+console.log("Esercizio 10");
+
+let isTodayMyBirthday = function() {
+    let giornoOdierno = new Date(); 
+    let meseCompleanno = 3;  
+    let giornoCompleanno = 25; 
+  
+    if (giornoOdierno.getMonth() === meseCompleanno && giornoOdierno.getDate() === giornoCompleanno) {
+        console.log("True");
+    } else {
+        console.log("False");
+    }
+  };
+  
+  isTodayMyBirthday();
+
+
 
 // Arrays & Oggetti
-
-// NOTA: l'array "movies" usato in alcuni esercizi è definito alla fine di questo file
-
-/* ESERCIZIO 11
-  Scrivi una funzione chiamata "deleteProp" che riceve un oggetto e una stringa come parametri; deve ritornare l'oggetto fornito dopo aver eliminato
-  in esso la proprietà chiamata come la stringa passata come secondo parametro.
-*/
-
-/* ESERCIZIO 12
-  Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 13
-  Scrivi una funzione chiamata countMovies che ritorna il numero di film contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 14
-  Scrivi una funzione chiamata "onlyTheYears" che crea un array con solamente gli anni di uscita dei film contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 15
-  Scrivi una funzione chiamata "onlyInLastMillennium" che ritorna solamente i film prodotto nel millennio scorso contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 16
-  Scrivi una funzione chiamata "sumAllTheYears" che ritorna la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array "movies" fornito.
-*/
-
-/* ESERCIZIO 17
-  Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
-*/
-
-/* ESERCIZIO 18
-  Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
-  "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
-*/
-
-/* ESERCIZIO 19
-  Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
-*/
-
-// DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
-
-/* ESERCIZIO 20
-  Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
-*/
-
-/* ESERCIZIO 21
-  Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
-*/
-
-/* ESERCIZIO 22
-  Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
-*/
-
-/* ESERCIZIO 23
-  Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
-*/
-
-/* ESERCIZIO 24
-  Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
-*/
-
-/* ESERCIZIO 25
-  Scrivi una funzione per svuotare la lista non ordinata con id "myList".
-*/
-
-/* ESERCIZIO 26
-  Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
-*/
-
-// [EXTRA] JS Avanzato
-
-/* ESERCIZIO 27
-  Crea una funzione chiamata "halfTree" che riceve un numero come parametro e costruisce un mezzo albero di "*" (asterischi) dell'altezza fornita.
-
-  Esempio:
-  halfTree(3)
-
-  *
-  **
-  ***
-
-*/
-
-/* ESERCIZIO 28
-  Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
-
-  Esempio:
-  tree(3)
-
-    *
-   ***
-  *****
-
-*/
-
-/* ESERCIZIO 29
-  Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
-*/
-
-/* Questo array viene usato per gli esercizi. Non modificarlo. */
 
 const movies = [
     {
@@ -312,4 +357,199 @@ const movies = [
         'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg',
     },
   ]
+
+/* ESERCIZIO 11
+  Scrivi una funzione chiamata "deleteProp" che riceve un oggetto e una stringa come parametri; deve ritornare l'oggetto fornito dopo aver eliminato
+  in esso la proprietà chiamata come la stringa passata come secondo parametro.
+*/
+console.log("Esercizio 11");
+
+let deleteProp = function(oggetto, stringa) {
+    delete oggetto[stringa];
+    return oggetto;
+}
+
+console.log(deleteProp(movies[4], "Year"));
+
+
+/* ESERCIZIO 12
+  Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
+*/
+console.log("Esercizio 12");
+
+let newestMovie = function(movies) {
+    let piùRecente = movies[0];
+    for (let i = 1; i < movies.length; i++) { 
+    if (parseInt(movies[i].Year) > parseInt(piùRecente.Year)) {
+        piùRecente = movies[i]; 
+    }
+  }
+    return piùRecente; 
+ }
+
+console.log(newestMovie(movies))  
+
+/* ESERCIZIO 13
+  Scrivi una funzione chiamata countMovies che ritorna il numero di film contenuti nell'array "movies" fornito.
+*/
+console.log("Esercizio 13");
+
+let countMovies =function(movies) {
+    return movies.length; 
+  }
+
+console.log(countMovies(movies))
+
+/* ESERCIZIO 14
+  Scrivi una funzione chiamata "onlyTheYears" che crea un array con solamente gli anni di uscita dei film contenuti nell'array "movies" fornito.
+*/
+console.log("Esercizio 14");
+
+let onlyTheYears = function(movies) {
+    let anniDiUscita = [];
+    for (let i = 0; i < movies.length; i++) {
+        anniDiUscita.push(movies[i].Year);
+    }
+    return anniDiUscita;
+  }
+
+console.log(onlyTheYears(movies))
+
+/* ESERCIZIO 15
+  Scrivi una funzione chiamata "onlyInLastMillennium" che ritorna solamente i film prodotto nel millennio scorso contenuti nell'array "movies" fornito.
+*/
+console.log("Esercizio 15");
+
+let onlyInLastMillennium = function(movies) {
+    for (let i = 0; i < movies.length; i++) {
+      let annoDiUscita = parseInt(movies[i].Year);
+      if (annoDiUscita < 2000) {
+        console.log(movies[i].Title, movies[i].Year);
+      }
+    }
+  }
+
+ onlyInLastMillennium(movies)
+
+/* ESERCIZIO 16
+  Scrivi una funzione chiamata "sumAllTheYears" che ritorna la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array "movies" fornito.
+*/
+console.log("Esercizio 16");
+
+
+
+/* ESERCIZIO 17
+  Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
+*/
+console.log("Esercizio 17");
+
+
+
+/* ESERCIZIO 18
+  Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
+  "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
+*/
+console.log("Esercizio 18");
+
+
+
+/* ESERCIZIO 19
+  Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
+*/
+console.log("Esercizio 19");
+
+
+
+// DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
+
+/* ESERCIZIO 20
+  Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
+*/
+console.log("Esercizio 20");
+
+
+
+/* ESERCIZIO 21
+  Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
+*/
+console.log("Esercizio 21");
+
+
+
+/* ESERCIZIO 22
+  Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
+*/
+console.log("Esercizio 22");
+
+
+
+/* ESERCIZIO 23
+  Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
+*/
+console.log("Esercizio 23");
+
+
+
+/* ESERCIZIO 24
+  Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
+*/
+console.log("Esercizio 24");
+
+
+
+/* ESERCIZIO 25
+  Scrivi una funzione per svuotare la lista non ordinata con id "myList".
+*/
+console.log("Esercizio 25");
+
+
+
+/* ESERCIZIO 26
+  Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
+*/
+console.log("Esercizio 26");
+
+
+
+// [EXTRA] JS Avanzato
+
+/* ESERCIZIO 27
+  Crea una funzione chiamata "halfTree" che riceve un numero come parametro e costruisce un mezzo albero di "*" (asterischi) dell'altezza fornita.
+
+  Esempio:
+  halfTree(3)
+
+  *
+  **
+  ***
+
+*/
+console.log("Esercizio 27");
+
+
+
+/* ESERCIZIO 28
+  Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
+
+  Esempio:
+  tree(3)
+
+    *
+   ***
+  *****
+
+*/
+console.log("Esercizio 28");
+
+
+
+/* ESERCIZIO 29
+  Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
+*/
+console.log("Esercizio 29");
+
+
+
+
+
   
