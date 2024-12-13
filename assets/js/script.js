@@ -15,7 +15,7 @@ REGOLE
 console.log("Esercizio A");
 
 let sum = 10 + 20;
-console.log(sum);
+console.log("Il risultato della somma tra 10 e 20 è: " +sum);
 
 /* ESERCIZIO B
   Crea una variabile chiamata "random" e assegnaci un numero casuale tra 0 e 20 (deve essere generato dinamicamente a ogni esecuzione).
@@ -23,7 +23,7 @@ console.log(sum);
 console.log("Esercizio B");
 
 let random = Math.floor(Math.random() * 21);            //Moltiplico per 21, altrimenti se avessi moltiplicato per 20, quest'ultimo non sarebbe potuto uscire nel range di numeri random.
-console.log(random);
+console.log("Il tuo numero casuale è: " + random);
 
 /* ESERCIZIO C
   Crea una variabile chiamata "me" e assegnaci un oggetto contenente le seguenti proprietà: name = il tuo nome, surname = il tuo cognome, age = la tua età.
@@ -81,7 +81,7 @@ let dice = function () {
     return Math.floor(Math.random() * 6) + 1;                     //Aggiungiamo il +1 dopo la randomizzazione dei numeri, per far in modo che il risultato rispecchi il lancio del dado, potendoci dare come risultato un numero che va dall'1 al 6. (se non avessimo aggiunto 1, il risultato sarebbe stato compreso tra 0 e 5)
   }
   
-console.log(dice());
+console.log("Il dado magico ti ha dato: " +dice());
 
 /* ESERCIZIO 2
   Crea una funzione chiamata "whoIsBigger" che riceve due numeri come parametri e ritorna il maggiore dei due.
@@ -93,6 +93,8 @@ let whoIsBigger = function(x, y) {
         return console.log("Il numero " + x + " è maggiore del numero " + y)
     } else if (y > x) {
         return console.log("Il numero " + y + " è maggiore del numero " + x)
+    } else if (isNaN(x) || isNaN(y)) {
+        return console.log("Verifica di inserire dei numeri come parametri, signor Mario Rossi.")
     } else {
         console.log("Il numero " + x + " è uguale al numero " + y)
     }
@@ -100,6 +102,8 @@ let whoIsBigger = function(x, y) {
 
 whoIsBigger(1, 2);
 whoIsBigger(2, 1);
+whoIsBigger(2, 2);
+whoIsBigger(2, "quattro");
 
 /* ESERCIZIO 3
   Crea una funzione chiamata "splitMe" che riceve una stringa come parametro e ritorna un'array contenente ogni parola della stringa.
@@ -128,8 +132,8 @@ function deleteOne(stringa, veroOfalso) {
     }
   }
 
-console.log(deleteOne("Desktop", true));
-console.log(deleteOne("Desktop", false));
+console.log("Se il valore booleano è true: " +deleteOne("Desktop", true));
+console.log("Se il valore booleano è false: " +deleteOne("Desktop", false));
 
 /* ESERCIZIO 5
   Crea una funzione chiamata "onlyLetters" che riceve una stringa come parametro e la ritorna eliminando tutte le cifre numeriche.
@@ -169,7 +173,7 @@ let whatDayIsIt = function() {
     return giorniDellaSettimana[giornoPreciso];  
   }
   
-console.log(whatDayIsIt());  
+console.log("Oggi è: " +whatDayIsIt());  
 
 /* ESERCIZIO 8
   Scrivi una funzione chiamata "rollTheDices" che riceve un numero come parametro.
@@ -195,7 +199,10 @@ let rollTheDices = function(lanciaDadoNVolte) {
       sum += lanciaIlDado;         
     }
     
-    return {"Somma totale dei numeri estratti": sum, "Valore singolo di ogni estrazione": values}; 
+    return {
+        "sum": sum,
+        "values": values
+    } 
   }
   
   console.log(rollTheDices(4));  
@@ -216,8 +223,8 @@ let howManyDays = function(dataDaInserire) {
     return differenzaInGiorni;  
   }
   
-console.log(howManyDays("2024-12-01")); 
-console.log(howManyDays("2024-12-12")); 
+console.log(howManyDays("2024-12-01")+" giorni passati da tale data"); 
+console.log(howManyDays("2024-12-12")+" giorno passato da tale data"); 
 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
@@ -369,7 +376,7 @@ let deleteProp = function(oggetto, stringa) {
     return oggetto;
 }
 
-console.log(deleteProp(movies[4], "Year"));
+console.log(deleteProp(movies[4], "Type"));
 
 
 /* ESERCIZIO 12
@@ -398,7 +405,7 @@ let countMovies =function(movies) {
     return movies.length; 
   }
 
-console.log(countMovies(movies))
+console.log("Il numero di film forniti nell'array Movies è: "+countMovies(movies))
 
 /* ESERCIZIO 14
   Scrivi una funzione chiamata "onlyTheYears" che crea un array con solamente gli anni di uscita dei film contenuti nell'array "movies" fornito.
@@ -436,29 +443,61 @@ let onlyInLastMillennium = function(movies) {
 */
 console.log("Esercizio 16");
 
+let sumAllTheYears = function(movies) {
+    let sommaAnni = 0; 
+    for (let i = 0; i < movies.length; i++) {
+      sommaAnni += parseInt(movies[i].Year);
+    }
+    return sommaAnni;
+  }
 
+  console.log("La somma di tutti gli anni di uscita dei film contenuti nell'array movies è: "+sumAllTheYears(movies));
 
 /* ESERCIZIO 17
   Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
 */
 console.log("Esercizio 17");
 
+function searchByTitle(stringaFilm) {
+    return movies.filter(film => 
+      film.Title.toLowerCase().includes(stringaFilm.toLowerCase())
+    );
+  }
 
-
+  console.log(searchByTitle("Avengers"))
+  
 /* ESERCIZIO 18
   Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
   "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
 */
 console.log("Esercizio 18");
 
-
+function searchAndDivide(stringaFilm) {
+    let match = [];
+    let unmatch = [];
+    for (let i = 0; i < movies.length; i++) {
+      if (movies[i].Title.toLowerCase().includes(stringaFilm.toLowerCase())) {
+        match.push(movies[i]);
+      } else {
+        unmatch.push(movies[i]);
+      }
+    }
+    return { match, unmatch };
+  }
+  
+  console.log(searchAndDivide("Avengers"));
 
 /* ESERCIZIO 19
   Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
 */
 console.log("Esercizio 19");
 
+let removeIndex = function(indiceDaRimuovere){
+    movies.splice(indiceDaRimuovere, 1);
+    return movies 
+}
 
+console.log(removeIndex(0));
 
 // DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
 
@@ -467,49 +506,96 @@ console.log("Esercizio 19");
 */
 console.log("Esercizio 20");
 
+let idContainer = function() {
+    let container = document.getElementById("container");
+    return container;
+}
 
+console.log(idContainer().textContent);
 
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
 console.log("Esercizio 21");
 
+let tagTd = function() {
+    let tuttiITd = document.querySelectorAll("td");
+    return tuttiITd;
+}
 
+console.log(tagTd());
 
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
 console.log("Esercizio 22");
 
+let stampaOgniTd = function(){
+    let tuttiITd = document.querySelectorAll("td"); 
+    tuttiITd.forEach(td => {
+        console.log(td.textContent)
+    })
+}
 
+stampaOgniTd();
 
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
 console.log("Esercizio 23");
 
+let backgroundColorLink = function() {
+    let link = document.querySelectorAll("a");
+    link.forEach(ele => {
+         ele.style.backgroundColor = "red"
+    })
+}
 
+backgroundColorLink();
+console.log("Abbiamo applicato lo sfondo rosso ai link");
 
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
 */
 console.log("Esercizio 24");
 
+let aggiungiElementoListaNO = function() {
+    let listaNO = document.getElementById("myList");
+    let nuovoElemento = document.createElement("li");
+    nuovoElemento.innerText = "QUARTO ELEMENTO LISTA";
+    listaNO.appendChild(nuovoElemento);
+}
 
+aggiungiElementoListaNO();
+console.log("Abbiamo aggiunto un QUARTO ELEMENTO LISTA alla lista non ordinata");
 
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
 console.log("Esercizio 25");
 
+let rimuoviListaNO = function() {
+    let listaNO = document.getElementById("myList");
+    listaNO.innerHTML = "";
+}
 
+rimuoviListaNO();
+console.log("Abbiamo rimosso la lista non ordinata con id #myList");
 
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
 console.log("Esercizio 26");
 
+let aggiungiClasseAOgniTr = function() {
+    let tuttiITr = document.querySelectorAll("tr");
+    for (let i = 0; i < tuttiITr.length; i++) {
+        tuttiITr[i].classList.add("test");
+    }
+}
 
+aggiungiClasseAOgniTr();
+console.log("Abbiamo aggiunto una classe di nome test a tutti i tag tr della pagina HTML");
 
 // [EXTRA] JS Avanzato
 
@@ -526,7 +612,15 @@ console.log("Esercizio 26");
 */
 console.log("Esercizio 27");
 
+let halfTree = function(numeroRighe) {
+    let numeroStringhe = "";
+    for (let i = 1; i <= numeroRighe; i++) {
+        numeroStringhe = numeroStringhe + "*";
+        console.log(numeroStringhe);
+      }
+}
 
+  halfTree(7);
 
 /* ESERCIZIO 28
   Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
@@ -541,15 +635,27 @@ console.log("Esercizio 27");
 */
 console.log("Esercizio 28");
 
-
+console.log("Non ci sono riuscito")
 
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
 console.log("Esercizio 29");
 
+let isItPrime = function(numeroDaVerificare) {
+    if (numeroDaVerificare === 2 || numeroDaVerificare === 3) {
+        return true;
+    }
+    if (numeroDaVerificare % 2 === 0 || numeroDaVerificare % 3 === 0 || numeroDaVerificare <= 1) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
+console.log(isItPrime(1));
+console.log(isItPrime(2));
+console.log(isItPrime(4));
+console.log(isItPrime(146));        
 
-
-
-  
+//ps: avevo cominciato a commentare ogni esercizio fatto in ogni passaggio, ma arrivato a un certo punto, sprecavo più tempo per commentare che per fare l'esercizio stesso, quindi ho deciso di non commentare più e di svolgere direttamente l'esercizio, mi scusi Prof.
